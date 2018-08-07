@@ -7,41 +7,49 @@ const InstrumentInfoView = function(container){
 InstrumentInfoView.prototype.bindEvents = function(){
   PubSub.subscribe('InstrumentFamilies:selected-instrument-ready', (evt) => {
     const instrument = evt.detail;
-    this.render(instrument);
+    this.container.innerHTML = '';
+    this.renderMainHeader(instrument);
+    this.renderSpaceAfterHeader();
+    this.renderFamilyDescription(instrument);
+    this.renderInstrumentsHeader();
+    this.populateAndStyleInstrumentList(instrument);
   });
 };
 
-InstrumentInfoView.prototype.render = function(instrument){
+InstrumentInfoView.prototype.renderMainHeader = function(instrument){
   const header = document.createElement('h2');
   header.textContent = `${instrument.name}`;
+  this.container.appendChild(header);
+  console.log("hi");
+};
 
+InstrumentInfoView.prototype.renderSpaceAfterHeader = function () {
   const space = document.createElement('p');
+  this.container.appendChild(space);
+};
 
+InstrumentInfoView.prototype.renderFamilyDescription = function (instrument) {
   const infoParagraph = document.createElement('p');
   infoParagraph.textContent = `${instrument.description}`;
-  this.container.innerHTML = '';
+  this.container.appendChild(infoParagraph);
+};
 
+InstrumentInfoView.prototype.renderInstrumentsHeader = function () {
   const secondaryHeader = document.createElement('h3');
   secondaryHeader.textContent = "Notable instruments include:";
+  this.container.appendChild(secondaryHeader);
+};
 
+InstrumentInfoView.prototype.populateAndStyleInstrumentList = function (instrument){
   const listOfInstruments = document.createElement('ol');
   listOfInstruments.style = "list-style-type:square";
-  // for (individualInstrument of instrument.instruments){
-  //   document.createElement('')
-  // }
   instrument.instruments.forEach((individualInstrument, index) => {
   const listItem = document.createElement('li');
   listItem.textContent = `${individualInstrument}`;
-    listOfInstruments.appendChild(listItem);
-  console.log("hi");
-});
-
-  this.container.appendChild(header);
-  this.container.appendChild(space);
-  this.container.appendChild(infoParagraph);
-  this.container.appendChild(secondaryHeader);
+  listOfInstruments.appendChild(listItem);
   this.container.appendChild(listOfInstruments);
+}
+)};
 
-};
 
 module.exports = InstrumentInfoView;

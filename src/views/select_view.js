@@ -22,6 +22,8 @@ SelectView.prototype.populate = function(instrumentsData){
     option.textContent = instrumentFamily.name;
     option.value = index;
     this.element.appendChild(option);
+
+    
   })
 }
 

@@ -12,9 +12,23 @@ InstrumentInfoView.prototype.bindEvents = function(){
 };
 
 InstrumentInfoView.prototype.render = function(instrument){
+  const header = document.createElement('h2');
+  header.textContent = `${instrument.name}`;
+
+  const space = document.createElement('p');
+
+  const secondaryHeader = document.createElement('h3');
+  secondaryHeader.textContent = "Notable instruments include:";
+
+  const instrumentsList = document.createElement('')
+
   const infoParagraph = document.createElement('p');
-  infoParagraph.textContent = `The`;
+  infoParagraph.textContent = `${instrument.description}`;
   this.container.innerHTML = '';
+
+  this.container.appendChild(header);
+  this.container.appendChild(space);
+  this.container.appendChild(secondaryHeader);
   this.container.appendChild(infoParagraph);
 };
 

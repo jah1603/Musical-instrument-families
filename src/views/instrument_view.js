@@ -8,20 +8,23 @@ InstrumentInfoView.prototype.bindEvents = function(){
   PubSub.subscribe('InstrumentFamilies:selected-instrument-ready', (evt) => {
     const instrument = evt.detail;
     this.container.innerHTML = '';
-    this.renderMainHeader(instrument);
-    this.renderSpaceAfterHeader();
-    this.renderFamilyDescription(instrument);
-    this.renderInstrumentsHeader();
-    this.populateAndStyleInstrumentList(instrument);
+    this.updateView(instrument);
   });
+};
+
+InstrumentInfoView.prototype.updateView = function (instrument) {
+  this.renderMainHeader(instrument);
+  this.renderSpaceAfterHeader();
+  this.renderFamilyDescription(instrument);
+  this.renderInstrumentsHeader();
+  this.populateAndStyleInstrumentList(instrument);
 };
 
 InstrumentInfoView.prototype.renderMainHeader = function(instrument){
   const header = document.createElement('h2');
   header.textContent = `${instrument.name}`;
   this.container.appendChild(header);
-  console.log("hi");
-};
+  };
 
 InstrumentInfoView.prototype.renderSpaceAfterHeader = function () {
   const space = document.createElement('p');

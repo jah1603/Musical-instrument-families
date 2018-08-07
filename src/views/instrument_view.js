@@ -17,19 +17,31 @@ InstrumentInfoView.prototype.render = function(instrument){
 
   const space = document.createElement('p');
 
-  const secondaryHeader = document.createElement('h3');
-  secondaryHeader.textContent = "Notable instruments include:";
-
-  const instrumentsList = document.createElement('')
-
   const infoParagraph = document.createElement('p');
   infoParagraph.textContent = `${instrument.description}`;
   this.container.innerHTML = '';
 
+  const secondaryHeader = document.createElement('h3');
+  secondaryHeader.textContent = "Notable instruments include:";
+
+  const listOfInstruments = document.createElement('ol');
+  listOfInstruments.style = "list-style-type:square";
+  // for (individualInstrument of instrument.instruments){
+  //   document.createElement('')
+  // }
+  instrument.instruments.forEach((individualInstrument, index) => {
+  const listItem = document.createElement('li');
+  listItem.textContent = `${individualInstrument}`;
+    listOfInstruments.appendChild(listItem);
+  console.log("hi");
+});
+
   this.container.appendChild(header);
   this.container.appendChild(space);
-  this.container.appendChild(secondaryHeader);
   this.container.appendChild(infoParagraph);
+  this.container.appendChild(secondaryHeader);
+  this.container.appendChild(listOfInstruments);
+
 };
 
 module.exports = InstrumentInfoView;
